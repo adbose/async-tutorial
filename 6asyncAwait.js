@@ -21,18 +21,22 @@ function getPosts() {
     }, 2000);
 }
 
-function createPost(post, callback) {
+function createPost(post) {
     console.log('entered createPosts');
     console.log('4. number of posts: ', posts.length);
     setTimeout(() => {
         console.log('waiting for createPosts to finish...');
         posts.push(post);
         console.log('5. number of posts: ', posts.length);
-        callback();
     }, 5000);
 }
 
-createPost({ title: 'Post Three', body: 'This is post three'}, getPosts);
+async function init() {
+    await createPost({ title: 'Post Three', body: 'This is post three'});
+    getPosts();
+}
+
+init();
 console.log('6. number of posts: ', posts.length);
 console.log('fin');
 // console.log(posts);
